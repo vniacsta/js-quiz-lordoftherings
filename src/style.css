@@ -2,7 +2,7 @@
 .app {
   font-family: "Noto Sans JP", sans-serif;
   max-width: 600px;
-  margin: 100px auto;
+  margin: 60px auto;
   text-align: center;
 }
 .title h1 {
@@ -19,8 +19,14 @@
     background-size: 300% 300%;
   }
 }
+.title-no-animation h1 {
+  font-family: "Norican", cursive;
+  color: #cba135;
+  font-size: 50px;
+  font-weight: 300;
+}
 .footer {
-  margin: 20px 0;
+  margin: 40px 0 10px;
 }
 .footer .footer-text {
   font-size: 12px;
@@ -39,7 +45,7 @@
   border: 0.7px solid #cba135;
   border-radius: 7px;
 }
-.introduction .quiz-button {
+.quiz-button {
   font-size: 16px;
   text-transform: uppercase;
   color: #ffffff;
@@ -49,7 +55,46 @@
   border-radius: 7px;
   background-color: #cba135;
 }
-.introduction .quiz-button:hover {
+.quiz-button:hover {
   cursor: pointer;
+}
+.introduction .quiz-button:hover {
   transform: scale(1.1);
+}
+
+/* Quiz container */
+.quiz .counter {
+  font-size: 13px;
+  font-weight: 100;
+  padding: 0;
+  margin: 0;
+}
+.quiz .question {
+  font-size: 20px;
+  font-weight: 300;
+  padding: 15px;
+  margin: 0;
+}
+.quiz .answers {
+  font-size: 16px;
+  color: #cba135;
+  display: block;
+  margin: 10px auto;
+  padding: 10px 5px;
+  width: 600px;
+  border: 1.5px solid #cba135;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+/* Score and last page */
+.score .score-txt {
+  font-size: 16px;
+  font-weight: 300;
+  padding: 30px 20px;
+  border: 0.7px solid #cba135;
+  border-radius: 7px;
+}
+.score-result {
+  font-weight: 600;
 }
