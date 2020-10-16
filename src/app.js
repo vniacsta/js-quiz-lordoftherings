@@ -87,10 +87,32 @@ getNextQuestion = () => {
   choices.forEach((choice) => {
     const number = choice.dataset['number'];
     choice.innerText = currentQuestion.options[number];
+    // setting atribute to html elements to get results
+    choice.setAttribute('onclick', 'getResult(this)');
   });
   
   // in order not to repeat the question
   availableQuestions.splice(i, 1);
+};
+
+getResult = (element) => {
+  // to get the index of the clicked answer
+  const idChoice = choices.indexOf(element);
+  // to get the index of the correct answer
+  const idCorrect = currentQuestion.correct;
+
+  if (idChoice === idCorrect) {
+    score++;
+    console.log('score' + score);
+    element.style.color = '#28a862';
+    element.style.borderColor = '#28a862';
+    element.innerHTML += `    <span class='symbols'>✔</span>`;
+  } else {
+    element.style.color = '#f03e3e';
+    element.style.borderColor = '#f03e3e';
+    element.innerHTML += `    <span class='symbols'>✖</span>`;
+    answerResult.innerHTML = `The correct answer is: <span class='symbols'>${currentQuestion.options[idCorrect]} ✔</span>`;
+  }
 };
 
 startQuiz();
