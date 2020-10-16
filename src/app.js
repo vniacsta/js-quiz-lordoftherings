@@ -54,42 +54,43 @@ const quizData = [
 const questions = document.getElementById('question');
 const choices = Array.from(document.getElementsByClassName('answers'));
 const questionCounterText = document.getElementById('question-counter');
+const nextBtn = document.getElementById('next-btn');
+const answerResult = document.getElementById('result');
+const scoreResult = document.getElementById('score-result');
+const totalQuestions = quizData.length;
 
 let currentQuestion = {};
 let questionCounter = 0;
 let availableQuestions = [];
-let acceptingAnswers = false;
+let score = 0;
 
 startQuiz = () => {
   questionCounter = 0;
-  availableQuestions = [...quizData]
+  availableQuestions = [...quizData];
+  score = 0;
   getNextQuestion();
 };
 
 getNextQuestion = () => {
-  if (questionCounter >= quizData.length || availableQuestions.length === 0) {
-    // when the quiz is finished, it will redirected to score page
-    return window.location.assign('score.html');
-    
-  } else {
-    questionCounter++;
-    questionCounterText.innerHTML = `Question ${questionCounter} of ${quizData.length}`;
 
-    // makes the quiz start randomly
-    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
-    currentQuestion = availableQuestions[questionIndex];
-    questions.innerText = currentQuestion.question;
-
-    // iterate using the 'data-number' set on html element
-    choices.forEach((choice) => {
-      const number = choice.dataset['number'];
-      choice.innerText = currentQuestion.options[number];
-    });
-
-    // so the questions do not repeat
-    availableQuestions.splice(questionIndex, 1);
-    acceptingAnswers = true;
-  }
+  questionCounterText.innerText = `Question ${questionCounter + 1} of ${totalQuestions}`;
+  questionCounter++;
+  
+  // iterates through the questions randomly
+  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+  currentQuestion = availableQuestions[questionIndex];
+  questions.innerText = currentQuestion.question;
+  // to find the index of the current question
+  const i = availableQuestions.indexOf(questionIndex);
+  
+  // iterates using the 'data-number' set on html element
+  choices.forEach((choice) => {
+    const number = choice.dataset['number'];
+    choice.innerText = currentQuestion.options[number];
+  });
+  
+  // in order not to repeat the question
+  availableQuestions.splice(i, 1);
 };
 
 startQuiz();

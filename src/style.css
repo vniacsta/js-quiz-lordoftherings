@@ -54,6 +54,7 @@
   border: 0.7px solid #cba135;
   border-radius: 7px;
   background-color: #cba135;
+  outline: none;
 }
 .quiz-button:hover {
   cursor: pointer;
@@ -85,16 +86,19 @@
   border: 1.5px solid #cba135;
   border-radius: 5px;
   background-color: #ffffff;
+  outline: none;
+}
+.quiz .answers:hover {
+  cursor: pointer;
 }
 
 /* Score and last page */
-.score .score-txt {
-  font-size: 16px;
-  font-weight: 300;
+.score {
   padding: 30px 20px;
   border: 0.7px solid #cba135;
   border-radius: 7px;
 }
-.score-result {
-  font-weight: 600;
+.score .score-txt {
+  font-size: 16px;
+  font-weight: 300;
 }
