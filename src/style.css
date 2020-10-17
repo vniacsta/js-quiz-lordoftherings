@@ -13,7 +13,7 @@
 }
 @keyframes reveal {
   80% {
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
   100% {
     background-size: 300% 300%;
@@ -82,7 +82,7 @@
   display: block;
   margin: 10px auto;
   padding: 10px 5px;
-  width: 600px;
+  width: 400px;
   border: 1.5px solid #cba135;
   border-radius: 5px;
   background-color: #ffffff;
