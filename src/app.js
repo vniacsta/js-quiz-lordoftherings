@@ -80,7 +80,6 @@ startQuiz = () => {
 getNextQuestion = () => {
 
   if (questionCounter === (totalQuestions - 1) || availableQuestions.length === 0) {
-    console.log('Quiz is finished');
     nextBtn.innerText = `Finish quiz`;
     showScore();
   }
@@ -119,7 +118,6 @@ getResult = (element) => {
 
   if (idChoice === idCorrect) {
     score++;
-    console.log('score' + score);
     element.style.color = '#28a862';
     element.style.borderColor = '#28a862';
     element.innerHTML += `    <span class='symbols'>✔</span>`;
