@@ -51,6 +51,11 @@ const quizData = [
   }
 ];
 
+const introductionElement = document.getElementById('introduction-box');
+const quizElement = document.getElementById('quiz-box');
+const scoreElement = document.getElementById('score-box');
+const getStarted = document.getElementById('start');
+
 const questions = document.getElementById('question');
 const choices = Array.from(document.getElementsByClassName('answers'));
 const questionCounterText = document.getElementById('question-counter');
@@ -153,9 +158,14 @@ denyMoreAnswers = () => {
 
 showScore = () => {
   nextBtn.addEventListener('click', () => {
-    window.location.assign('score.html');
+    quizElement.setAttribute('style', 'display: none');
+    scoreElement.setAttribute('style', 'display: inherit');
     totalScore.innerText = `${score} of ${totalQuestions}`;
   });
 };
 
-startQuiz();
+getStarted.addEventListener('click', () => {
+  introductionElement.setAttribute('style', 'display: none');
+  quizElement.setAttribute('style', 'display: inherit');
+  startQuiz();
+});
