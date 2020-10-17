@@ -56,12 +56,13 @@ const choices = Array.from(document.getElementsByClassName('answers'));
 const questionCounterText = document.getElementById('question-counter');
 const nextBtn = document.getElementById('next-btn');
 const answerResult = document.getElementById('result');
-const scoreResult = document.getElementById('score-result');
+const totalScore = document.getElementById('score-result');
 const totalQuestions = quizData.length;
 
 let currentQuestion = {};
 let questionCounter = 0;
 let availableQuestions = [];
+let acceptingAnswers = false;
 let score = 0;
 
 startQuiz = () => {
@@ -73,6 +74,12 @@ startQuiz = () => {
 
 getNextQuestion = () => {
 
+  if (questionCounter === (totalQuestions - 1) || availableQuestions.length === 0) {
+    console.log('Quiz is finished');
+    nextBtn.innerText = `Finish quiz`;
+    showScore();
+  }
+
   questionCounterText.innerText = `Question ${questionCounter + 1} of ${totalQuestions}`;
   questionCounter++;
   
@@ -81,7 +88,6 @@ getNextQuestion = () => {
   currentQuestion = availableQuestions[questionIndex];
   questions.innerText = currentQuestion.question;
   // to find the index of the current question
-  const i = availableQuestions.indexOf(questionIndex);
   
   // iterates using the 'data-number' set on html element
   choices.forEach((choice) => {
@@ -92,10 +98,15 @@ getNextQuestion = () => {
   });
   
   // in order not to repeat the question
-  availableQuestions.splice(i, 1);
+  availableQuestions.splice(questionIndex, 1);
+
+  acceptingAnswers = true;
 };
 
 getResult = (element) => {
+
+  acceptingAnswers = false;
+
   // to get the index of the clicked answer
   const idChoice = choices.indexOf(element);
   // to get the index of the correct answer
@@ -113,6 +124,38 @@ getResult = (element) => {
     element.innerHTML += `    <span class='symbols'>✖</span>`;
     answerResult.innerHTML = `The correct answer is: <span class='symbols'>${currentQuestion.options[idCorrect]} ✔</span>`;
   }
+
+  // to restrict the user to give another try
+  denyMoreAnswers();
+
+  // to get to the next question by clicking the button
+  nextBtn.addEventListener('click', () => {
+
+    element.style.color = '#cba135';
+    element.style.borderColor = '#cba135';
+    answerResult.innerHTML = null;
+    
+    choices.forEach((choice) => {
+      choice.style.pointerEvents = 'auto';
+    });
+    
+    if(!acceptingAnswers) {
+      getNextQuestion();
+    }
+  });
+};
+
+denyMoreAnswers = () => {
+  choices.forEach((choice) => {
+    choice.style.pointerEvents = 'none';
+  });
+};
+
+showScore = () => {
+  nextBtn.addEventListener('click', () => {
+    window.location.assign('score.html');
+    totalScore.innerText = `${score} of ${totalQuestions}`;
+  });
 };
 
 startQuiz();
