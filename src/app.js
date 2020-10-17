@@ -81,8 +81,8 @@ const quizData = [
   },
   {
     question: 'What year was \'The Two Towers\' released in theaters?',
-    options: ['Orcist', 'Anduril', 'Glamdring', 'Narsil II'],
-    correct: 1
+    options: ['1999', '2007', '2002', '2001'],
+    correct: 2
   },
   {
     question: 'In the \'Two Towers\' (extended edition), Aragorn is revealed to be how old?',
@@ -133,6 +133,11 @@ getNextQuestion = () => {
     nextBtn.innerText = `Finish quiz`;
     showScore();
   }
+  
+  // to stop the script from running after displaying the score
+  if (questionCounter === totalQuestions) {
+    return false;
+  }
 
   questionCounterText.innerText = `Question ${questionCounter + 1} of ${totalQuestions}`;
   questionCounter++;
@@ -141,7 +146,6 @@ getNextQuestion = () => {
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
   questions.innerText = currentQuestion.question;
-  // to find the index of the current question
   
   // iterates using the 'data-number' set on html element
   choices.forEach((choice) => {
@@ -192,6 +196,7 @@ getResult = (element) => {
       choice.style.pointerEvents = 'auto';
     });
     
+    // to make sure the function doesn't jump questions
     if(!acceptingAnswers) {
       getNextQuestion();
     }
@@ -206,23 +211,25 @@ denyMoreAnswers = () => {
 
 showScore = () => {
   nextBtn.addEventListener('click', () => {
+    
     quizElement.setAttribute('style', 'display: none');
     scoreElement.setAttribute('style', 'display: inherit');
+
+    // add score feedback
     if (score === totalQuestions) {
-      totalScore.innerHTML = `${score / totalQuestions * 100}%<br />Wow! You are an fan!`;
+      totalScore.innerHTML = `${Math.floor(score / totalQuestions * 100)}% · ${score} of ${totalQuestions}<br /><small>Wow! You are an expert 🤩</small>`;
     } else if (score > (totalQuestions / 2)) {
-      totalScore.innerHTML = `${score / totalQuestions * 100}%<br />At least you got more than half right`;
+      totalScore.innerHTML = `${Math.floor(score / totalQuestions * 100)}% · ${score} of ${totalQuestions}<br /><small>At least you got more than half right 🙄</small>`;
     } else if (score < (totalQuestions / 2)) {
-      totalScore.innerHTML = `${score / totalQuestions * 100}%<br />Less than half? You are not a true fan!<br />Go watch the movies and start again`;
-    }
-    finishQuiz = () => {
-      return;
+      totalScore.innerHTML = `${Math.floor(score / totalQuestions * 100)}% · ${score} of ${totalQuestions}<br /><small>Less than half? You are not a true fan!<br />Go watch the movies and start again 😑</small`;
     }
   });
 };
 
 getStarted.addEventListener('click', () => {
+  
   introductionElement.setAttribute('style', 'display: none');
   quizElement.setAttribute('style', 'display: inherit');
+  
   startQuiz();
 });
