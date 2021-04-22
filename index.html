@@ -1,90 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- compatibilities -->
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#000000" />
+    <head>
+        <!-- compatibilities -->
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#000000" />
 
-    <!-- title and description -->
-    <title>Lord of the Rings Quiz App</title>
-    <meta name="description" content="Quiz made with JavaScript" />
+        <!-- title and description -->
+        <title>Lord of the Rings Quiz App</title>
+        <meta name="description" content="Quiz made with JavaScript" />
 
-    <!-- meta tags SEO -->
-    <meta property="og:title" content="VniaCsta | Full-Stack Software Developer">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="Check out this cool quiz! Try to answer all questions correctly.">
-    <meta property="og:url" content="https://quiz-app-javascript-vniacsta.netlify.app/">
-    <meta property="og:image" content="https://vniacsta.pt/static/media/quiz-app-js.552f5dcd.png">
-    <meta property="og:image:alt" content="Lord of the Rings Quiz">
-    
-    <meta name="keywords" content="fullstackdev, softwaredevelopment, juniordev, fullstack, programming, javascript">
-    <link rel="canonical" href="https://vniacsta.pt/">
+        <!-- meta tags SEO -->
+        <meta
+            property="og:title"
+            content="VniaCsta | Full-Stack Software Developer"
+        />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:description"
+            content="Check out this cool quiz! Try to answer all questions correctly."
+        />
+        <meta
+            property="og:url"
+            content="https://quiz-app-javascript-vniacsta.netlify.app/"
+        />
+        <meta
+            property="og:image"
+            content="https://vniacsta.pt/static/media/quiz-app-js.552f5dcd.png"
+        />
+        <meta property="og:image:alt" content="Lord of the Rings Quiz" />
 
-    <!-- links -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Norican&family=Noto+Sans+JP:wght@300;400&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="media/ring-solid.svg" />
-    <link rel="stylesheet" href="src/style.css" />
-  </head>
+        <meta
+            name="keywords"
+            content="fullstackdev, softwaredevelopment, juniordev, fullstack, programming, javascript"
+        />
+        <link rel="canonical" href="https://vniacsta.pt/" />
 
-  <body>
-    <div class="app">
-      <div class="title">
-        <h1 class="quiz-name">Lord of the Rings Quiz App</h1>
-      </div>
+        <!-- links -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Norican&family=Noto+Sans+JP:wght@300;400&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="icon" href="media/ring-solid.svg" />
+        <link rel="stylesheet" href="src/style.css" />
+    </head>
 
-      <div class="introduction" id="introduction-box">
-        <h3 class="introduction-txt">
-          This is a practice project made with JavaScript!
-          <br />
-          Enjoy!
-        </h3>
-        <button class="quiz-button" id="start">Start the quiz</button>
-      </div>
+    <body>
+        <div class="app">
+            <div class="title">
+                <h1 class="quiz-name">Lord of the Rings Quiz App</h1>
+            </div>
 
-      <div class="quiz" id="quiz-box" style="display: none">
-        <div class="counter" id="question-counter"></div>
-        <h3 class="question" id="question"></h3>
-        <div>
-          <button class="answers" data-number="0"></button>
-          <button class="answers" data-number="1"></button>
-          <button class="answers" data-number="2"></button>
-          <button class="answers" data-number="3"></button>
+            <div class="introduction" id="introduction-box">
+                <h3 class="introduction-txt">
+                    This is a practice project made with JavaScript!
+                    <br />
+                    Enjoy!
+                </h3>
+                <button class="quiz-button" id="start">Start the quiz</button>
+            </div>
+
+            <div class="quiz" id="quiz-box" style="display: none">
+                <div class="counter" id="question-counter"></div>
+                <h3 class="question" id="question"></h3>
+                <div>
+                    <button class="answers" data-number="0"></button>
+                    <button class="answers" data-number="1"></button>
+                    <button class="answers" data-number="2"></button>
+                    <button class="answers" data-number="3"></button>
+                </div>
+                <div class="answer-result" id="result"></div>
+                <button class="quiz-button" id="next-btn">Next question</button>
+            </div>
+
+            <div class="score" id="score-box" style="display: none">
+                <h3 class="score-txt">
+                    Congrats!
+                    <br />
+                    Your final score is:
+                </h3>
+                <h3 id="score-result"></h3>
+            </div>
+
+            <div class="footer">
+                <small class="footer-text">
+                    Open-sourced on
+                    <a
+                        class="link"
+                        href="https://github.com/vniacsta/js-quiz-lordoftherings"
+                        target="_blank"
+                    >
+                        Github
+                    </a>
+                    · Built with ❤ by
+                    <a
+                        class="link"
+                        href="https://vniacsta.com/"
+                        target="_blank"
+                    >
+                        Vania Costa
+                    </a>
+                </small>
+            </div>
         </div>
-        <div class="answer-result" id="result"></div>
-        <button class="quiz-button" id="next-btn">Next question</button>
-      </div>
-
-      <div class="score" id="score-box" style="display: none">
-        <h3 class="score-txt">
-          Congrats!
-          <br />
-          Your final score is:
-        </h3>
-        <h3 id="score-result"></h3>
-      </div>
-
-      <div class="footer">
-        <small class="footer-text">
-          Open-sourced on
-          <a
-            class="link"
-            href="https://github.com/vniacsta/js-quiz-lordoftherings"
-            target="_blank"
-          >
-            Github
-          </a>
-          · Built with ❤ by
-          <a class="link" href="https://vniacsta.pt/" target="_blank">
-            Vania Costa
-          </a>
-        </small>
-      </div>
-    </div>
-    <script src="src/app.js"></script>
-  </body>
+        <script src="src/app.js"></script>
+    </body>
 </html>
